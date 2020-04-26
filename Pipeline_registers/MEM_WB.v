@@ -7,7 +7,7 @@ module MEM_WB(
     output [31:0] ReadData,
     output [31:0] ALU_Result,
     output [4:0] Write_Destination,
-    output PCSrc,
+    output RegWrite,
     output MemtoReg
     );
     reg [31:0] ReadData;
@@ -22,7 +22,7 @@ module MEM_WB(
         ReadData <= ReadData_;
         ALU_Result <= ALU_Result_;
         Write_Destination <= Write_Destination_;
-        PCSrc <= WB[0];
+        RegWrite <= WB[0];
         MemtoReg <= WB[1];
     end
 endmodule

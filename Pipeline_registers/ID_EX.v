@@ -9,7 +9,7 @@ module ID_EX(
     input [15:11] WriteChoice2_,
     input [1:0] WB_,
     input [2:0] M_,
-    input [2:0] EX_,
+    input [3:0] EX_,
     
     output [31:2] PC_4,
     output [31:0] ReadData1,
@@ -19,9 +19,9 @@ module ID_EX(
     output [15:11] WriteChoice2,
     output [1:0] WB,
     output [2:0] M,
-    wire RegDst;
-    wire ALUSrc;
-    wire ALUOp;
+    output RegDst,
+    output ALUSrc,
+    output [1:0] ALUOp,
     );
     
     reg [31:2] PC_4;
@@ -34,7 +34,7 @@ module ID_EX(
     reg [2:0] M;
     reg RegDst;
     reg ALUSrc;
-    reg ALUOp;
+    reg [1:0] ALUOp;
     
     always@(posedge clk)
     begin
@@ -48,6 +48,6 @@ module ID_EX(
         M <= M_;
         RegDst <= EX_[0];
         ALUSrc <= EX_[1];
-        ALUOp <= EX_[2];
+        ALUOp <= EX_[3:2];
     end
 endmodule
