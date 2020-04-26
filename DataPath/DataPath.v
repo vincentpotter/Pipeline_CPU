@@ -59,12 +59,13 @@ module DataPath(
     wire Branch;
     wire MemWrite;
     wire MemRead;
+    wire PCSrc;
     wire [31:2] NPC_mem;
     wire [31:0] AlU_result_mem;
     wire [31:0] ReadData2_mem;
     wire [5:0] WriteRegister_mem;
     wire [31:0] outDM; 
-
+    
     //WB
     wire [1:0] WB_wb;
     wire [31:0] ReadData1_wb;
@@ -73,7 +74,6 @@ module DataPath(
     wire [31:0] WriteData2_wb;
     wire [31:0] ALUInput2;
     wire [5:0] WriteRegister_wb;
-    wire PCSrc;
     wire MemtoReg;
 
    
@@ -102,8 +102,9 @@ module DataPath(
 
     EX_MEM ex_mem(.clk(CLK), .PC_4(NPC_ex), .immediate(Bigoffset_ex), .Zero_(Zero_ex), .ALU_result_(AlU_result), .ReadData2_(ReadData2_ex), .Write_Destination(WriteRegister), .WB_(WB_ex), .M_(M_ex), 
     .Branch_dst(NPC_mem), .Zero(Zero_mem), .AlU_result(ALU_result_mem), .ReadData2(ReadData2_mem), .Write_Destination(WriteRegister_mem), .WB(WB_mem), .M(M_mem));
-   
+    //EX_MEM  M 信号(位数)输出改一下 at last
     //MEM
+    PCSrc = Branch & Zero_mem;
     DM dm(.addr(ALU_result_mem[11:2]), .din(ReadData2_mem), .MemRead(MemRead), .we(MemRead), .clk(CLK), .dout(outDM));
     MEM_WB mem_wb(.clk(CLK), .ReadData_(outDM), .ALU_result_(ALU_result_mem), .Write_Destination(WriteRegister_mem), .WB(WB_mem),
     ReadData(WriteData1_wb), .AlU_Result(WriteData2_wb), .Write_Destination(WriteRegister_wb), .PCSrc(PCSrc), .MemtoReg(MemtoReg));
