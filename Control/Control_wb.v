@@ -1,10 +1,12 @@
+`include "instruction.v"
 module Control_wb(
     input [31:26] Instruction,
-    input RegWrite,
-    input MemtoReg 
+    input [1:0] WB
 );
     reg RegWrite;
     reg MemtoReg;
+    RegWrite = M[0];
+    MemtoReg = M[1];
 
     always @(*)
         begin

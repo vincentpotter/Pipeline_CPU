@@ -1,13 +1,15 @@
+`include "instruction.v"
 module Control_mem(
     input [31:26] Instruction,
-    input Branch,
-    input MemRead,
-    input MemWrite
+    input [2:0] M;
 );
     reg Branch;
     reg MemRead;
     reg MemWrite;
-    
+    Branch = M[0];
+    MemRead = M[1];
+    MemWrite = M[2];
+
     always @(*)
         begin
             case (Instruction)

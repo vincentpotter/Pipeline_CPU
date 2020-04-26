@@ -1,14 +1,15 @@
 `include "instruction.v"
 module Control(
     input [31:26] Instruction,
-    input RegDst,
-    input ALUSrc,
-    input ALUOp
+    input [3:0] EX;
 );
     reg RegDst;
-    reg ALUOp;
+    reg [1:0] ALUOp;
     reg ALUSrc;
 
+    RegDst = EX[0];
+    ALUOp = EX[2:1];
+    ALUSrc = EX[3];
     always @(*)
         begin
             case(Instruction)

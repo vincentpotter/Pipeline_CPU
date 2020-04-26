@@ -1,3 +1,4 @@
+`include "instruction.v"
 module Control_id(
     input [31:26] Instruction, // why so little 
     output [1:0] WB,
