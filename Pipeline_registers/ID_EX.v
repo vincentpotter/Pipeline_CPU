@@ -30,9 +30,11 @@ module ID_EX(
     reg [31:0] extended_offset;
     reg [20:16] WriteChoice1;
     reg [15:11] WriteChoice2;
-    reg WB;
-    reg M;
-    reg EX;
+    reg [1;0] WB;
+    reg [2:0] M;
+    reg RegDst;
+    reg ALUSrc;
+    reg ALUOp;
     
     always@(posedge clk)
     begin
