@@ -20,13 +20,16 @@ module EX_MEM(
 );
     reg PC_4[31:2];
     reg [31:0] Branch_dst;
+    reg [31:2] immediate;
     reg Zero;
-    reg ALU_result[31:0];
-    reg ReadData2[31:0];
-    reg Write_Destination[4:0];
-    reg WB;
-    reg M;
-    reg PC_4_L[31:2];
+    reg [31:0] ALU_result;
+    reg [31:0] ReadData2;
+    reg [4:0] Write_Destination;
+    reg [1:0] WB;
+    reg [2:0] M;
+    reg Branch;
+    reg MemRead;
+    reg MemWrite;
 
     always @(posedge clk)
         begin

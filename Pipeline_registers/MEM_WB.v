@@ -13,6 +13,7 @@ module MEM_WB(
     reg [31:0] ReadData;
     reg [31:0] ALU_Result;
     reg [4:0] Write_Destination;
+    reg [1:0] WB;
     reg RegWrite;
     reg MemtoReg;
     
